@@ -21,4 +21,4 @@ jobs:
           sh -s -- -b $(go env GOPATH)/bin v1.22.2
       - name: Running golangci-lint
         run: $(go env GOPATH)/bin/golangci-lint run
-      - run: echo $(go env GOPATH)
+      - run: ls
