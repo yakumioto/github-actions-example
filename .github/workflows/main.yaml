@@ -4,20 +4,6 @@ name: Github Actions
 on: [ push ]
 
 jobs:
-  build:
-    name: Hello github actions
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        go: [ '1.8', '1.9.3', '1.10.x' ]
-    steps:
-      - uses: actions/checkout@master
-      - name: Hello github actions
-        uses: actions/setup-go@v1
-        with:
-          go-version: ${{ matrix.go }}
-      - run: go run main.go
-
   lint:
     name: Golang lint
     runs-on: ubuntu-latest
@@ -26,6 +12,6 @@ jobs:
       - uses: actions/setup-go@v1
       - name: Install golangci-lint
         run: curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh |
-          sh -s -- -b $(go env GOPATH)/bin v1.22.2
+          sh -s -- -b /usr/local/bin v1.22.2
       - name: Running golangci-lint
-        run: $(go env GOPATH)/bin/golangci-lint run
+        run: golangci-lint run
