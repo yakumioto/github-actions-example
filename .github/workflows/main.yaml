@@ -1,11 +1,7 @@
 ---
 name: Github Actions
 
-on:
-  push:
-    branches:
-      - master
-  pull_request:
+on: [push]
 
 jobs:
   lint:
@@ -21,4 +17,5 @@ jobs:
           sh -s -- -b $(go env GOPATH)/bin v1.22.2
       - name: Running golangci-lint
         run: $(go env GOPATH)/bin/golangci-lint run
-      - run: ls
+      - run: docker version
+      - run: docker-compose version
